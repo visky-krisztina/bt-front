@@ -1,0 +1,85 @@
+.contactContainer {
+	margin-top: 7rem;
+	padding: 0;
+}
+
+.addressContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.a-title {
+	margin: 0 auto;
+	color: var(--clr-primary);
+}
+
+.lelkeszek {
+	padding: 2rem 15rem 2rem 15rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	@media screen and (max-width: 760px) {
+		display: flex;
+		flex-direction: column;
+		padding: 2rem;
+		align-items: center;
+	}
+}
+
+.otherContactDetails {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0 10rem;
+	margin: 10rem 0 5rem 0;
+	line-height: 1.5rem;
+	font-size: 1.2rem;
+	@media screen and (max-width: 760px) {
+		padding: 0 3rem;
+		margin: 1rem 0 2rem 0;
+	}
+}
+
+.bold {
+	font-weight: 700;
+	font-size: 1.5rem;
+}
+
+.address-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.address {
+	text-align: center;
+	line-height: 1.5rem;
+	padding: 1.2rem 0;
+}
+
+.address img {
+	margin-top: 1rem;
+	@media screen and (max-width: 760px) {
+		width: 100%;
+		padding: 1rem 5rem;
+	}
+}
+
+.memberContainer {
+	width: 25rem;
+	height: 13rem;
+	@media screen and (max-width: 760px) {
+		display: flex;
+		flex-direction: column;
+		height: auto;
+		margin-bottom: 1rem;
+	}
+}
+
+#megkozelites {
+	@media screen and (max-width: 760px) {
+		padding: 0 3rem;
+	}
+}

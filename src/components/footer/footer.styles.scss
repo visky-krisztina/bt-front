@@ -1,0 +1,105 @@
+.social-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: whitesmoke;
+  padding: 0 3rem;
+  width: 100%;
+
+  @media screen and (max-width: 760px) {
+    padding: 0 0.2rem;
+  }
+
+
+}
+
+.social-container h5 {
+  font-size: 1rem;
+  @media screen and (max-width: 760px) {
+    font-size: 0.7rem;
+  }
+
+}
+
+  a.social {
+    padding: 0 1rem;
+    transition: transform 250ms;
+    display: inline-block;
+
+    @media screen and (max-width: 760px) {
+      font-size: 0.7rem;
+    }
+  
+  }
+
+  a.social:hover {
+    transform: translateY(-2px);
+  }
+  a.youtube {
+    color: #eb3223;
+  }
+  
+  a.facebook {
+    color: #4968ad;
+  }
+  
+  a.twitter {
+    color: #49a1eb;
+  }
+  
+  a.instagram {
+    color: black;
+  }
+
+  .display-label {
+    display: inline;
+    padding-right: 1rem;
+  }
+
+  #user_input {
+    margin-left: 0.5rem;
+    @media screen and (max-width: 760px) {
+      margin-left: 0rem;
+
+    }
+  
+  }
+
+  form {
+    padding: 0.5rem;
+
+    @media screen and (max-width: 760px) {
+      padding: 0.2rem;
+      display: flex;
+    }
+    
+  }
+
+  #submit-button {
+    height: 2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    background: chocolate;
+    min-width: 100px;
+    max-width: 200px;
+    height: 2rem;
+    border-radius: 1rem;
+    color: #fff;
+    font-size: 1.35rem;
+
+    &:hover {
+      transform: translateY(-2px);
+  }
+
+  @media screen and (max-width: 760px) {
+    height: 1.5rem;
+    font-size: 1rem;
+    max-width: 80px;
+    margin-top: 1rem;
+  }
+
+
+  }
+
+  

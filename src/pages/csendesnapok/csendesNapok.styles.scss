@@ -1,0 +1,18 @@
+.pageContainer {
+  padding: 0;
+  margin-top: 3rem;
+}
+
+#forMoreInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 1rem;
+  margin-bottom: 2rem;
+
+  & h2 {
+    margin-right: 1rem;
+  }
+}

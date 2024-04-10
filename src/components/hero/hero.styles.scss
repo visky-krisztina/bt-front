@@ -1,0 +1,97 @@
+// Create three grid areas (boxes) that overlap each other, essentially creating three layers.
+// Grid box 1 (layer 1): Image
+// Grid box 2 (layer 2): Gradient overlay
+// Grid box 3 (layer 3): Call to action text/content
+.top-banner-section {
+	display: grid;
+	grid-template-columns: 1fr; // stretch to the full frame
+	grid-template-rows: 25rem; // 350 pixels tall
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	align-content: center;
+	justify-content: center;
+
+	.banner-image-div {
+		grid-area: 1 / 1 / 2 / 2;
+	} // image
+	.banner-overlay-div {
+		grid-area: 1 / 1 / 2 / 2;
+	} // gradient or other overlay
+	.banner-text-div {
+		grid-area: 1 / 1 / 2 / 2;
+	} // overlay objects like text, buttons, etc.
+}
+// Banner image (layer 1)
+.banner-image {
+	display: grid;
+	min-width: 350px; // Do not resize to smaller than this.
+	width: 100%;
+	height: 100%;
+	object-fit: cover; // Using this so the image can be any size and still look halfway decent.
+	clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+	filter: sepia(50%);
+}
+
+.color-banner {
+	margin-top: -9rem;
+	width: 100%;
+	height: 10rem;
+	clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 31%);
+	background-color: #c59d5f;
+}
+// Gradient overlay (layer 2)
+// gradient overlay going from black to transparent.
+// note: search for a gradient overlay generator to make this easier.
+.banner-overlay-div {
+	display: grid;
+	max-width: 100%;
+	clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+}
+
+// banner text
+.banner-text-div {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	width: 70%;
+	@media screen and (max-width: 760px) {
+		margin-top: 3rem;
+	}
+}
+
+// Typograhy: *** This is all the stuff you change
+.heroTitle {
+	// font can get larger, but no smaller than 10 points.
+	font-size: 2.3rem;
+	font-family: "Playfair Display", serif;
+	letter-spacing: 5px;
+	text-shadow: 1px 2px 2px #000000;
+	color: #c59d5f;
+	font-weight: bolder;
+	text-transform: uppercase;
+	padding: 0.5rem 1rem 1rem 1rem;
+	@media screen and (max-width: 760px) {
+		font-size: 1rem;
+	}
+}
+
+.greeting {
+	font-size: 2rem;
+	font-family: "Playfair Display", serif;
+	letter-spacing: 4px;
+	text-shadow: 1px 2px 2px #000000;
+	color: #c59d5f;
+	font-weight: bolder;
+	text-transform: uppercase;
+	@media screen and (max-width: 760px) {
+		font-size: 1.2rem;
+	}
+}
+
+.bibleVerse {
+	line-height: 1.2;
+	letter-spacing: 1px;
+	font-weight: normal;
+	font-size: 1rem;
+}

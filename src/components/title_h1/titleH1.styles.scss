@@ -1,0 +1,16 @@
+.title_styles {
+	@media screen and (max-width: 760px) {
+		text-align: center;
+	}
+}
+
+.title_styles h1 {
+	font-size: 2rem;
+	font-family: "Playfair Display", serif;
+	letter-spacing: 2px;
+	text-shadow: 1px 1.5px 1.5px #000000;
+	color: #c59d5f;
+	@media screen and (max-width: 760px) {
+		font-size: 1.5rem;
+	}
+}

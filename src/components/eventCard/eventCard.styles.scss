@@ -1,0 +1,44 @@
+  .eventCard {
+    width: 15rem;
+    height: 18rem;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+    font-family: roboto;
+    text-align: center;
+    transition: 0.9s ease;
+    margin: 1rem 2rem;
+  }
+  .eventCard-image {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-size: cover;
+    width: 100%;
+  }
+  
+  .eventCard-text {
+      padding: 0.5rem;
+  }
+  .eventCard-text .eventDate {
+    color: rgb(255, 7, 110);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  .eventCard-text p {
+    color: grey;
+    font-size:15px;
+    font-weight: 300;
+    padding: 0.5rem;
+
+  }
+  .eventTitleStyle {
+    margin-top:0px;
+    font-size:28px;
+    color: black;
+  }
+  
+  .eventCard:hover {
+    transform: scale(1.15);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+  }
+  
