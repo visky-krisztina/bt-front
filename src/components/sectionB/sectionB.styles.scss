@@ -6,14 +6,27 @@
 	padding: 0 6rem;
 	background-color: white;
 
-	@media screen and (max-width: 760px) {
+	@media screen and (max-width: 996px) {
 		flex-direction: column;
 		height: auto;
+		padding: 0 2rem;
+	}
+
+	@media (min-width: 996px) and (max-width: 1200px) {
+		padding: 0 2rem;
+	}
+	@media (min-width: 1200px) and (max-width: 1400px) {
+		padding: 0 2rem;
 	}
 }
+
+.sectionB-buttonStyle {
+	margin: 1rem auto;
+}
+
 .left {
 	flex-direction: row-reverse;
-	@media screen and (max-width: 760px) {
+	@media screen and (max-width: 996px) {
 		flex-direction: column;
 	}
 }
@@ -29,7 +42,7 @@
 		object-fit: cover;
 		position: absolute;
 		z-index: 1;
-		@media screen and (max-width: 760px) {
+		@media screen and (max-width: 996px) {
 			display: none;
 		}
 	}
@@ -39,15 +52,15 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-
+	align-items: center;
 	width: 50%;
-	height: 100%;
+	height: auto;
 
 	& p {
 		text-align: justify;
 		padding-top: 1rem;
 	}
-	@media screen and (max-width: 760px) {
+	@media screen and (max-width: 996px) {
 		width: 100%;
 		padding: 1rem;
 		& p {
@@ -57,16 +70,59 @@
 }
 
 .paragraphsSectionB-left {
-	padding: 2rem 0 2rem 3rem;
-	@media screen and (max-width: 760px) {
+	padding: 2rem 0 2rem 2rem;
+	@media screen and (max-width: 996px) {
 		padding: 1rem 0 1rem 0;
+	}
+
+	@media (min-width: 996px) and (max-width: 1200px) {
+		padding: 1rem 0 1rem 1.5rem;
+
+		.centerTitle {
+			margin: 0.5rem 0 0 0;
+		}
+
+		p {
+			font-size: 0.9rem;
+		}
+	}
+
+	@media (min-width: 1200px) and (max-width: 1400px) {
+		.centerTitle {
+			margin: 0.5rem 0 0.5rem 0;
+		}
+
+		p {
+			font-size: 0.95rem;
+		}
 	}
 }
 
 .paragraphsSectionB-right {
-	padding: 2rem 3rem 2rem 0;
-	@media screen and (max-width: 760px) {
+	padding: 2rem 2rem 2rem 0;
+	@media screen and (max-width: 996px) {
 		padding: 1rem 0 1rem 0;
+	}
+	@media (min-width: 996px) and (max-width: 1200px) {
+		padding: 1rem 1.5rem 1rem 0;
+
+		.centerTitle {
+			margin: 0.5rem 0 0 0;
+		}
+
+		p {
+			font-size: 0.9rem;
+		}
+	}
+
+	@media (min-width: 1200px) and (max-width: 1400px) {
+		.centerTitle {
+			margin: 0.5rem 0 0.5rem 0;
+		}
+
+		p {
+			font-size: 0.95rem;
+		}
 	}
 }
 
@@ -78,7 +134,7 @@
 	position: absolute;
 	top: 10.5rem;
 	left: -0.5rem;
-	@media screen and (max-width: 760px) {
+	@media screen and (max-width: 996px) {
 		display: none;
 	}
 }
@@ -91,7 +147,7 @@
 	position: absolute;
 	top: 10.5rem;
 	right: -0.5rem;
-	@media screen and (max-width: 760px) {
+	@media screen and (max-width: 996px) {
 		display: none;
 	}
 }

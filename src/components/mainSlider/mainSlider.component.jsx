@@ -1,76 +1,86 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
-import './mainSlider.styles.scss';
+import React, { useEffect, useRef, useState, useContext } from "react";
+import { IoArrowForward, IoArrowBack } from "react-icons/io5";
+import { AuthContext } from "../../contexts/AuthContext.js";
+import { ModalContext } from "../../contexts/ModalContext";
+import EditableComponent from "../editAndDeleteButtons/EditableComponent.jsx";
+import "./mainSlider.styles.scss";
 
+const MainSlider = ({ slides }) => {
+	const { isLoggedIn, username } = useContext(AuthContext);
+	const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
+	const [current, setCurrent] = useState(0);
+	const length = slides.length;
+	const timeout = useRef(null);
 
-const MainSlider = ( {slides} ) => {
-    //creating the functionality of the Slider
-    //the intial state & function
-    const [current, setCurrent] = useState(0);
-    //for checking the length of our images in the slides
-    const length = slides.length;
-    const timeout = useRef(null);
+	const startAutoSlide = () => {
+		if (timeout.current) clearTimeout(timeout.current); // Clear previous timeout
+		timeout.current = setTimeout(() => {
+			setCurrent((prev) => (prev === length - 1 ? 0 : prev + 1));
+		}, 8000);
+	};
 
-    useEffect(() => {
-        const nextSlide = () => {
-            setCurrent(current => ( current === length - 1 ? 0 : current + 1));
-        }
+	useEffect(() => {
+		if (!isModalOpen) {
+			startAutoSlide();
+		}
 
-        timeout.current= setTimeout(nextSlide, 8000); // run the nextSlide function every 8 second
-        
-        return function() {
-            if (timeout.current) {
-                clearTimeout(timeout.current);
-            }
-        }
-    }, [current, length]);
- 
+		return () => {
+			if (timeout.current) clearTimeout(timeout.current); // Cleanup on unmount or modal open
+		};
+	}, [isModalOpen, length]);
 
-    const nextSlide = () => {
-        if (timeout.current) {
-            clearTimeout(timeout.current);
-        }
+	const handleModalClose = () => {
+		setIsModalOpen(false); // Close the modal
+		startAutoSlide(); // Restart auto-slide
+	};
 
-        setCurrent(current === length - 1 ? 0 : current + 1);
-    }
+	const nextSlide = () => {
+		if (isModalOpen) return; // Prevent slide change if modal is open
+		setCurrent((prev) => (prev === length - 1 ? 0 : prev + 1));
+	};
 
-    const prevSlide = () => {
-        if (timeout.current) {
-            clearTimeout(timeout.current);
-        }
+	const prevSlide = () => {
+		if (isModalOpen) return; // Prevent slide change if modal is open
+		setCurrent((prev) => (prev === 0 ? length - 1 : prev - 1));
+	};
 
-        setCurrent(current === 0 ? length - 1 : current - 1);
-    }
+	if (!Array.isArray(slides) || slides.length <= 0) {
+		return null;
+	}
 
-    //if there is no array or no data in the array, return null
-    if (!Array.isArray(slides) || slides.length <= 0) {
-        return null;
-    }
-    return (
-      <section className="heroSection">
-          <div className="heroWrapper">
-              {slides.map((slide, index) => {
-                  return(
-                      <div className="heroSlide" key={index}>
-                          {index === current && (
-                            <div className="heroSlider">
-                                <img className="heroImage" src={slide.image} alt={slide.alt}/>
-                                <div className="heroContent">
-                                    <h1>{slide.title}</h1>
-                                    <p>{slide.subTitle}</p>
-                                </div>
-                            </div>
-                          )}
-                      </div>
-                  )
-              })}
-              <div className="sliderButtons">
-                <IoArrowBack className="arrowButtons" onClick={prevSlide}/>
-                <IoArrowForward className="arrowButtons" onClick={nextSlide}/>
-              </div>
-          </div>
-      </section>
-    );
-  }
-  
-  export default MainSlider;
+	return (
+		<section className='heroSection'>
+			<div className='heroWrapper'>
+				{slides.map((slide, index) => {
+					return (
+						<div className='heroSlide' key={index}>
+							{index === current && (
+								<div className='heroSlider'>
+									<img className='heroImage' src={slide.imgUrl} alt={slide.title} />
+									<div className='heroContent'>
+										<EditableComponent
+											itemId={slide.id}
+											modelType='MainSliderData'
+											apiText='other/mainSlider'
+											onClose={handleModalClose}
+										>
+											<h1>{slide.title}</h1>
+											<p>{slide.subTitle}</p>
+											{isLoggedIn ? <h2>Szia, {username.toUpperCase()}!</h2> : null}
+										</EditableComponent>
+									</div>
+								</div>
+							)}
+						</div>
+					);
+				})}
+				<div className='sliderButtons'>
+					<IoArrowBack className='arrowButtons' onClick={prevSlide} />
+					<IoArrowForward className='arrowButtons' onClick={nextSlide} />
+				</div>
+			</div>
+		</section>
+	);
+};
+
+export default MainSlider;

@@ -22,12 +22,22 @@
 
 @media screen and (max-width: 760px) {
 	.button {
-		width: 10rem;
-		height: 3rem;
-		font-size: auto !important;
-		text-align: center;
-		display: flex;
-		justify-content: center;
-		align-self: center;
+		width: 15rem;
+		font-size: 1rem;
+	}
+}
+
+@media (min-width: 760px) and (max-width: 1200px) {
+	.button {
+		width: auto;
+		padding: 0 0.6rem;
+	}
+}
+
+@media (min-width: 1200px) and (max-width: 1900px) {
+	.button {
+		width: auto;
+		font-size: 1rem;
+		padding: 1.3rem 0.5rem;
 	}
 }

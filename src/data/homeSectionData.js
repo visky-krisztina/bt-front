@@ -91,7 +91,7 @@ const homeSectionData = [
 	},
 	{
 		page: "csendesnapok",
-		headline: "Csendeshétvége",
+		headline: "Csendeshétvégék",
 		p: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quam pellentesque nec nam aliquam sem et. Elementum curabitur vitae nunc sed velit dignissim sodales. Ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Leo in vitae turpis massa sed elementum tempus egestas. Purus viverra accumsan in nisl nisi scelerisque. Ut faucibus pulvinar elementum integer enim neque volutpat ac. Tincidunt id aliquet risus feugiat in ante metus.Suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Nam aliquam sem et tortor consequat id porta nibh. Elit sed vulputate mi sit amet mauris commodo quis imperdiet. Ut eu sem integer vitae justo eget magna fermentum iaculis. At lectus urna duis convallis convallis tellus id interdum. Diam quis enim lobortis scelerisque. Ullamcorper malesuada proin libero nunc. Sed euismod nisi porta lorem mollis aliquam ut porttitor leo. Volutpat ac tincidunt vitae semper quis lectus.",
 		image: csendeshetvege,
 		alt: "Csendes hetvegere meghivo",

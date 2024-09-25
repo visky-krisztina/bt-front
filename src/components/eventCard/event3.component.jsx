@@ -6,11 +6,11 @@ import { ImLocation } from "react-icons/im";
 const EventCard3 = (props) => {
 	return (
 		<div className='eventsItem-Container'>
-			<div>
+			<>
 				<img id='eventItem-image' src={props.eventImage} alt='event' />
-			</div>
+			</>
 
-			<div class='eventItem-details'>
+			<div className='eventItem-details'>
 				<div className='eventDate-block'>
 					<div>{props.eventDateMonth}</div>
 					<div>{props.eventDateDay}</div>

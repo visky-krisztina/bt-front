@@ -1,39 +1,63 @@
-import React from "react";
-
+import React, { useState, useEffect, useContext } from "react";
+import { DataContext } from "../../contexts/DataProvider.js";
 import "./homepage.styles.scss";
 import MainSlider from "../../components/mainSlider/mainSlider.component";
-import mainSliderData from "../../data/mainSliderData";
-import homeCardData from "../../data/homeCardData";
 import Card from "../../components/smallCard/smallCard.component";
-import homeSectionData from "../../data/homeSectionData";
-import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import Section from "../../components/section/section.component";
-import eventsData from "../../data/eventsData";
 import TitleH1 from "../../components/title_h1/titleH1.component";
 import Button from "../../components/button/button.component";
-import ImgComp from "../../components/imgComponent/imgComponent.component";
 import EventCard3 from "../../components/eventCard/event3.component";
 
+import axios from "axios";
+import EditableComponent from "../../components/editAndDeleteButtons/EditableComponent.jsx";
+
 function HomePage() {
-	const lelkiTaplalek = homeSectionData.find((element) => {
-		return element.alt === "Napi Ige";
-	});
+	const { sectionData } = useContext(DataContext);
+	const [events, setEvents] = useState([]);
+	const [mainSliderData, setMainSliderData] = useState([]);
+	const [dailyVerses, setDailyVerses] = useState({});
+
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				const mainSliderDataResponse = await axios.get("/api/other/mainSlider");
+				setMainSliderData(mainSliderDataResponse.data);
+
+				const eventsResponse = await axios.get("/api/other/events/");
+				setEvents(eventsResponse.data);
+			} catch (error) {
+				console.error("Error fetching data", error);
+			}
+		}
+		fetchData();
+	}, []);
+
+	useEffect(() => {
+		axios
+			.get("/api/other/dailyVerses/")
+			.then((response) => {
+				const todayVerse = response.data.find((verse) => verse.date === new Date().toISOString().split("T")[0]);
+				setDailyVerses(todayVerse || {});
+			})
+			.catch((error) => console.error("Error fetching daily verses:", error));
+	}, []);
+
 	return (
 		<div className='homepageContainer'>
 			<MainSlider slides={mainSliderData} />
 
 			<div className='card-container'>
-				{homeCardData.map((item, index) => {
-					return (
+				{sectionData.map((item) => {
+					return item.page === "home_sm_card" ? (
 						<Card
-							key={index}
-							title={item.title}
-							subTitle={item.subTitle}
+							key={item.id}
+							title={item.headline}
+							subTitle={item.p1}
 							src={item.image}
-							alt={item.alt}
-							styleMargin={item.top}
+							alt={item.headline}
+							styleMargin={item.cName}
 						/>
-					);
+					) : null;
 				})}
 			</div>
 
@@ -42,15 +66,15 @@ function HomePage() {
 					<TitleH1 title='Gyülekezetünk következő eseményei' />
 				</div>
 				<div className='underline'></div>
-				<div className='justFlexRow' style={{ justifyContent: "center", alignItems: "center" }}>
-					<h3 className='centerTitle'>Gyülekezetünk alkalmai naptárban is láthatóak</h3>
-					<div className='buttonStyle' style={{ marginTop: "0rem" }}>
-						<Button buttonLabel='itt.' to='/alkalmaink' />
+				<div className='linkTo-events-calendar'>
+					<h3>Gyülekezetünk alkalmai naptárban is láthatóak</h3>
+					<div style={{ marginTop: "0rem" }}>
+						<Button buttonLabel='ide kattintva.' to='/alkalmaink' />
 					</div>
 				</div>
 
 				<div className='events-holder'>
-					{eventsData.map((obj, i) => {
+					{events.map((obj, i) => {
 						return (
 							<EventCard3
 								key={i}
@@ -66,74 +90,25 @@ function HomePage() {
 				</div>
 			</div>
 
-			{homeSectionData.map((obj, i) => {
+			{sectionData.map((obj) => {
 				return obj.page === "home" ? (
-					<Section
-						key={i}
-						headline={obj.headline}
-						p={obj.p}
-						src={obj.image}
-						alt={obj.alt}
-						to={obj.to}
-						buttonLabel={obj.buttonLabel}
-						cName={obj.cName}
-					/>
+					<EditableComponent itemId={obj.id} modelType='Item' apiText='items'>
+						<Section
+							key={obj.id}
+							headline={obj.headline}
+							p1={obj.p1}
+							{...(obj.p2 && { p2: obj.p2 })}
+							src={obj.image}
+							alt={obj.headline}
+							to={obj.to}
+							buttonLabel={obj.buttonLabel}
+							cName={obj.cName}
+							verse1={obj.buttonLabel === "Lelki táplálék." ? dailyVerses.verse1 : null}
+							verse2={obj.buttonLabel === "Lelki táplálék." ? dailyVerses.verse2 : null}
+						/>
+					</EditableComponent>
 				) : null;
 			})}
-
-			<div className='centerElement'>
-				<TitleH1 title={lelkiTaplalek.headline.toUpperCase()} />
-			</div>
-			<div className='underline'></div>
-
-			<div className='spiritual-section'>
-				<div className='spiritual-paragraphs centerElement'>
-					<div>
-						<p>{lelkiTaplalek.p}</p>
-						<div className='buttonStyle'>
-							<Button buttonLabel={lelkiTaplalek.buttonLabel} to={lelkiTaplalek.to} />
-						</div>
-					</div>
-
-					<div>
-						<p>
-							Utmutato bghg hjhvgbj hj ghjbjkbghc vgyh vgvcyg bghvfcvgy vbgyvgyh vgyctfygu ftyftyg ytgfyt tyvftyguyhbh
-							vhjv jh bhjbhj bhjb bhjb hjbv{" "}
-						</p>
-
-						<div className='buttonStyle'>
-							<Button buttonLabel='Bibliaolvasó kalauz.' to='/utmutato' />
-						</div>
-					</div>
-				</div>
-
-				<div className='spiritual-sectionImage centerElement'>
-					<ImgComp src={lelkiTaplalek.image} alt={lelkiTaplalek.alt} />
-				</div>
-			</div>
-
-			<div className='audioPlayer-wrapper'>
-				<div className='audioPlayer-Container'>
-					<AudioPlayer />
-				</div>
-
-				<div className='audio-container'>
-					<div className='centerElement'>
-						<TitleH1 title='BÉTHEL dicsőités' />
-					</div>
-					<div className='underline'></div>
-
-					<div className='audiotext-container'>
-						<div className='textBox'>
-							<p id='text'>Szeretettel ajánljuk hallgatásra gyülekezetünk zenecsapatának énekeit!</p>
-							<p id='text'>
-								A zenecsapat tagjairól, történetéről és dicsőitő alkalmaikról részletesebb információt kaphatnak a Zenés
-								Istentiszteletek c. menüpont alatt.{" "}
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	);
 }
