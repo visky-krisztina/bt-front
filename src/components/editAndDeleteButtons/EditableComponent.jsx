@@ -49,8 +49,12 @@ const EditableComponent = ({ children, itemId, onDelete, modelType, apiText }) =
 
 			{isLoggedIn && (
 				<>
-					<button onClick={fetchItemData}>Edit</button>
-					<button onClick={() => setShowDeleteModal(true)}>Delete</button>
+					<button className='btn-editable' onClick={fetchItemData}>
+						Edit
+					</button>
+					<button className='btn-editable' onClick={() => setShowDeleteModal(true)}>
+						Delete
+					</button>
 				</>
 			)}
 

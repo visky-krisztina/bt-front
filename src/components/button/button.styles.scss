@@ -1,4 +1,4 @@
-.button {
+.btn-button {
 	background: #c59d5f;
 	padding: 0 1rem;
 	width: auto;
@@ -21,21 +21,21 @@
 }
 
 @media screen and (max-width: 760px) {
-	.button {
+	.btn-button {
 		width: 15rem;
 		font-size: 1rem;
 	}
 }
 
 @media (min-width: 760px) and (max-width: 1200px) {
-	.button {
+	.btn-button {
 		width: auto;
 		padding: 0 0.6rem;
 	}
 }
 
 @media (min-width: 1200px) and (max-width: 1900px) {
-	.button {
+	.btn-button {
 		width: auto;
 		font-size: 1rem;
 		padding: 1.3rem 0.5rem;

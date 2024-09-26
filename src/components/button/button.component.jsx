@@ -13,13 +13,13 @@ const Button = (props) => {
 	if (props.to.startsWith("http://") || props.to.startsWith("https://")) {
 		// Render external link
 		return (
-			<button className='button' onClick={handleClick}>
+			<button className='btn-button' onClick={handleClick}>
 				{props.buttonLabel}
 			</button>
 		);
 	}
 	return (
-		<Link className='button' target='_blank' to={props.to}>
+		<Link className='btn-button' target='_blank' to={props.to}>
 			{props.buttonLabel}
 		</Link>
 	);
