@@ -22,7 +22,7 @@
 		margin: 0;
 		padding: 0 1rem;
 		& h1 {
-			padding: 0.5rem;
+			padding-top: 0.7rem;
 		}
 	}
 }
@@ -31,7 +31,11 @@
 	padding: 1rem 3rem;
 	line-height: 1.5rem;
 	font-size: 1.2rem;
-	@media screen and (max-width: 760px) {
+	@media screen and (max-width: 480px) {
+		padding: 0.5rem;
+		font-size: 0.9rem;
+	}
+	@media (min-width: 480px) and (max-width: 760px) {
 		padding: 1rem;
 	}
 }
